@@ -142,7 +142,7 @@ def predict(tx: TransactionInput):
         prediction = model.predict(scaled)[0]  # -1 = anomalie, 1 = normal
 
         risk_score = normalize_score(raw_score)
-        is_anomaly = prediction == -1
+        is_anomaly = risk_score >= 0.30
         severity = get_severity(risk_score)
         shap_explanation = get_shap_explanation(feature_values)
 
